@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Own CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <title>Drum buttons</title>
+  </head>
+  <body style="background: center url(img/bg.png);" >
+    <div class="container vw-100 vh-100 d-flex align-items-center  ">
+        <div class="container ">
+            <div class="row justify-content-center text-center">
+                <div data-key="65" class="key col-2 mx-2" >
+                    <h1 class="text-white" >A</h1>
+                    <p style="color: rgb(231, 209, 12);">CLAP</p>
+                </div>
+                <div data-key="83" class="key col-2 mx-2 "  >
+                    <h1 class="text-white" >S</h1>
+                    <p style="color: rgb(231, 209, 12);" >HIHAT</p>
+                </div>
+                <div data-key="68" class="key col-2 mx-2 "  >
+                    <h1 class="text-white">D</h1>
+                    <p style="color: rgb(231, 209, 12);">KICK</p>
+                </div>
+                <div data-key="70" class="key col-2 mx-2 " >
+                    <h1 class="text-white">F</h1>
+                    <p style="color: rgb(231, 209, 12);">OPENHAT</p>
+                </div>
+                <div data-key="71" class="key col-2 mx-2 " >
+                    <h1 class="text-white">G</h1>
+                    <p style="color: rgb(231, 209, 12);">BOOM</p>
+                </div>
+                <div data-key="72" class="key col-2 mx-2" >
+                    <h1 class="text-white">H</h1>
+                    <p style="color: rgb(231, 209, 12);">RIDE</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio data-key="65" src="audio/clap.wav"></audio>
+    <audio data-key="83" src="audio/hihat.wav"></audio>
+    <audio data-key="68" src="audio/kick.wav"></audio>
+    <audio data-key="70" src="audio/openhat.wav"></audio>
+    <audio data-key="71" src="audio/boom.wav"></audio>
+    <audio data-key="72" src="audio/ride.wav"></audio>
+
+    <script>
+        //function to play audio and add transition effects
+        const playaudio = (event) =>{
+            const key = document.querySelector(`div[data-key="${event.keyCode}"]`);
+            const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+            if (!audio) {return;}
+            key.classList.add('pressed');
+            audio.currentTime = 0;
+            audio.play();
+        }
+        // document.getElementById('second').innerHTML = "What does the Fox say?";
+        //function to remove transition effects 
+        const rmvtransition = (elem)=>{
+            elem.target.classList.remove('pressed');
+        }
+        //function call to rmv transition effects
+        const keys = Array.from(document.querySelectorAll('.key')); //array of divs wiith clas key
+        keys.forEach((elem)=>{ elem.addEventListener('transitionend',rmvtransition)
+        })
+        //function call to play audio
+        window.addEventListener('keydown',playaudio);
+    </script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

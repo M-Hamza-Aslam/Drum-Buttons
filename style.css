@@ -1,0 +1,11 @@
+.pressed{
+    transform:scale(1.1);
+    transition: all 0.07s ease ;
+    border: 4px solid rgb(231, 209, 12) !important;
+    box-shadow: 0 0 1rem rgb(231, 209, 12);;
+}
+.key{
+    border:2px solid black;
+    border-radius: .25rem;
+    width: 11% !important;
+}
